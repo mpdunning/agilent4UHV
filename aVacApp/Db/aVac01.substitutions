@@ -1,0 +1,16 @@
+
+file aVacController.template {
+pattern 
+{NONE}
+{NONE}
+}
+
+file aVacCh.template {
+pattern 
+{CH,               DESC,           ALIAS, IHIHI, IHIGH, VHIHI, VHIGH, PHIHI, PHIGH, THIHI, THIGH}
+{ 1, "1148, 1238, 1338", "ESB:VACP:1148", 1E-2,  1E-3,  7000,  6000,  1E-5,  1E-6,    52,    48}
+{ 2,       "1438, 1538", "ESB:VACP:1438", 1E-2,  1E-3,  7000,  6000,  1E-5,  1E-6,    52,    48}
+{ 3,       "1638, 1738", "ESB:VACP:1638", 1E-2,  1E-3,  7000,  6000,  1E-5,  1E-6,    52,    48}
+{ 4, "1890, 2160, 2260", "ESB:VACP:1890", 1E-2,  1E-3,  7000,  6000,  1E-5,  1E-6,    52,    48}
+}
+

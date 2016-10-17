@@ -1,0 +1,91 @@
+#--- Ch.$(CH) ---------------------------------------
+record(waveform, "$(P):CH$(CH)") {
+  field(DESC, "$(DESC)")
+  field(FTVL, "CHAR")
+  field(NELM, "100")
+  field(PINI, "1")
+}
+record(bi, "$(P):HV:CH$(CH)") {
+  field(DESC, "Ch$(CH) HV status")
+  field(DTYP, "stream")
+  field(INP,  "@$(PROTOFILE) getHVCh$(CH) $(PORT)")
+  field(ZNAM,  "Off")
+  field(ONAM,  "On")
+}
+record(ai, "$(P):I:CH$(CH)") {
+  field(DESC, "Ch$(CH) Current")
+  alias("$(ALIAS):CURRENT")
+  field(DTYP, "stream")
+  field(INP,  "@$(PROTOFILE) getCurrentCh$(CH) $(PORT)")
+  field(EGU,  "A")
+  field(PREC, "2")
+  field(HIHI, "$(IHIHI)")
+  field(HIGH, "$(IHIGH)")
+  field(LOW,  "1E-12")
+  field(LOLO, "1E-13")
+  field(HHSV, "MAJOR")
+  field(HSV,  "MINOR")
+  field(LSV,  "NO_ALARM")
+  field(LLSV, "NO_ALARM")
+}
+record(longin, "$(P):I:PROTECT:CH$(CH)") {
+  field(DESC, "Ch$(CH) Protect current")
+  field(DTYP, "stream")
+  field(INP,  "@$(PROTOFILE) getProtectCh$(CH) $(PORT)")
+  field(EGU,  "mA")
+}
+record(ai, "$(P):SETPT:CH$(CH)") {
+  field(DESC, "Ch$(CH) Set point")
+  field(DTYP, "stream")
+  field(INP,  "@$(PROTOFILE) getSetPtCh$(CH) $(PORT)")
+  field(EGU,  "A")
+  field(PREC, "2")
+  field(FLNK, "$(P):I:OVERSP:CH$(CH)")
+}
+record(calc, "$(P):I:OVERSP:CH$(CH)") {
+  field(DESC, "Ch$(CH) over set point")
+  field(INPA, "$(P):I:CH$(CH)")
+  field(INPB, "$(P):SETPT:CH$(CH)")
+  field(CALC, "A>B?1:0")
+}
+record(longin, "$(P):V:CH$(CH)") {
+  field(DESC, "Ch$(CH) Voltage")
+  field(DTYP, "stream")
+  field(INP,  "@$(PROTOFILE) getVoltageCh$(CH) $(PORT)")
+  field(EGU,  "V")
+  field(HIHI, "$(VHIHI)")
+  field(HHSV, "MAJOR")
+  field(HIGH, "$(VHIGH)")
+  field(HSV,  "MINOR")
+}
+record(ai, "$(P):P:CH$(CH)") {
+  field(DESC, "Ch$(CH) Pressure")
+  alias("$(ALIAS):PRESSURE")
+  field(DTYP, "stream")
+  field(INP,  "@$(PROTOFILE) getPressureCh$(CH) $(PORT)")
+  field(EGU,  "")
+  field(PREC, "2")
+  field(HIHI, "$(PHIHI)")
+  field(HHSV, "MAJOR")
+  field(HIGH, "$(PHIGH)")
+  field(HSV,  "MINOR")
+}
+record(longin, "$(P):T:CH$(CH)") {
+  field(DESC, "Ch$(CH) Temp")
+  field(DTYP, "stream")
+  field(INP,  "@$(PROTOFILE) getTempCh$(CH) $(PORT)")
+  field(EGU,  "C")
+  field(HIHI, "$(THIHI)")
+  field(HHSV, "MAJOR")
+  field(HIGH, "$(THIGH)")
+  field(HSV,  "MINOR")
+}
+record( bo, "$(P):CH$(CH):DISABLE"){
+  field( DESC, "Ch$(CH) disable")
+  field( OUT,  "$(P):SEQ$(CH).DISA")
+  field( ZNAM, "Enabled")
+  field( ONAM, "Disabled")
+  field( VAL,  "1")
+  field( PINI, "1")
+}
+
